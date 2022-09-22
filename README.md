@@ -1,3 +1,3 @@
-**Python learning
+# Python learning
 
 Изучение основ языка Python
