@@ -1,0 +1,24 @@
+# Задайте последовательность чисел. Напишите программу, которая выведет список 
+# неповторяющихся элементов исходной последовательности.
+
+from random import randint
+
+def make_list_num_n_elem(N):
+    listNum = []
+    for i in range(N):
+        listNum.append(randint(-1 * N, N))
+    return listNum
+
+def make_not_rep_list(list):
+    for elem in list:
+        if list.count(elem) > 1:
+            list.remove(elem)
+    print(list)
+    return
+A = [10, 10, 23, 10, 123, 66, 78, 123]
+
+make_not_rep_list(A)
+
+list1 = make_list_num_n_elem(50)
+print(list1)
+make_not_rep_list(list1)
