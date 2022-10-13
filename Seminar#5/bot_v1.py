@@ -1,0 +1,42 @@
+from random import randint
+
+# candy = 2021
+candy = 280 # для удобства и минимзации кол-ва ходов
+
+print('Условие задачи: На столе лежит 2021 конфета. Играют два игрока делая ход друг после друга. Первый ход '
+      'определяется жеребьёвкой.\nЗа один ход можно забрать не более чем 28 конфет. Все конфеты оппонента достаются '
+      'сделавшему последний ход.')
+query = randint(1, 7) % 2
+turn_candy = 28
+
+while candy > 28:
+
+    if query == 0:
+        print('The first player\'s turn')
+        query += 1
+        turn_candy = 29
+        while turn_candy > 28 or turn_candy < 1:
+            turn_candy = int(input('take candies in range(1:28) - '))
+    else:
+
+        if 29 < candy < 58:
+            turn_candy = candy - 29
+        elif candy > 29 * (candy // 29):
+            turn_candy = candy - 29 * (candy // 29)
+        elif candy < 29 * (candy // 29):
+            turn_candy = candy - 29 * (candy // 28 - 1)
+        elif candy == 58:
+            print('You win the leather bag of bones!')
+            exit()
+        else:
+            turn_candy = randint(1, 28)
+        print(f'The bot turn - {turn_candy} candies')
+        query -= 1
+
+    candy -= turn_candy
+    print(f"{candy} - candies left.")
+
+if query == 0:
+    print('You win the leather bag of bones!')
+else:
+    print('The bot player win!')
